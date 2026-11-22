@@ -17,12 +17,19 @@ export function Layout({ className }: LayoutProps) {
 
   return (
     <div
-      className={cn('min-h-screen flex flex-col', className)}
+      className={cn(
+        'flex flex-col',
+        isConversation ? 'h-screen overflow-hidden' : 'min-h-screen',
+        className
+      )}
       dir={language.direction}
     >
       <Header />
       <main
-        className={cn('flex-1', isConversation && 'flex flex-col min-h-0 overflow-hidden')}
+        className={cn(
+          'flex-1 min-h-0',
+          isConversation ? 'flex flex-col overflow-hidden' : ''
+        )}
         id="main-content"
         role="main"
       >
