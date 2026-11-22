@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/__pycache__/
+backend/.venv/
+backend/venv/
+
+# Build outputs
+frontend/dist/
+frontend/build/
+backend/dist/
+
+# Environment files
+.env
+.env.local
+.env.production
+frontend/.env
+frontend/.env.local
+backend/.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Audio recordings (never commit by default)
+recordings/
+*.wav
+*.mp3
+*.webm
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# TypeScript
+*.tsbuildinfo
+# Python compiled
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+*.pyc
+

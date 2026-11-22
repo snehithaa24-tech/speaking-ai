@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background-primary: #FAFAF9;
+    --color-background-secondary: #F5F5F4;
+    --color-foreground-primary: #1C1917;
+    --color-brand-primary: #0F766E;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background-primary text-foreground-primary font-sans antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Language-specific font families */
+  .lang-en {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .lang-hi {
+    font-family: 'Noto Sans Devanagari', system-ui, sans-serif;
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-brand-primary ring-offset-2 ring-offset-background-primary;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* In-app Accessibility Toggles (class-based) */
+  .reduced-motion *,
+  .reduced-motion *::before,
+  .reduced-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    :root {
+      --color-background-primary: #FFFFFF;
+      --color-foreground-primary: #000000;
+      --color-brand-primary: #006B5E;
+    }
+  }
+
+  .high-contrast {
+    --color-background-primary: #FFFFFF;
+    --color-background-secondary: #F0F0F0;
+    --color-foreground-primary: #000000;
+    --color-foreground-secondary: #171717;
+    --color-foreground-muted: #262626;
+    --color-brand-primary: #005A4E;
+  }
+
+  .large-text {
+    font-size: 115%;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-brand-muted text-brand-primary;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border-secondary rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-foreground-muted;
+  }
+}
+
+@layer components {
+  /* Button variants */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background-primary disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-primary text-white hover:bg-brand-secondary active:bg-brand-primary/90 shadow-soft hover:shadow-medium;
+  }
+
+  .btn-secondary {
+    @apply btn bg-background-tertiary text-foreground-primary hover:bg-border-secondary active:bg-border-primary border border-border-primary;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-foreground-secondary hover:bg-background-tertiary active:bg-border-primary;
+  }
+
+  .btn-danger {
+    @apply btn bg-error-secondary text-white hover:bg-error-primary active:bg-error-primary/90 shadow-soft hover:shadow-medium;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3.5 text-body-lg;
+  }
+
+  .btn-md {
+    @apply px-4 py-2.5 text-body;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-body-sm;
+  }
+
+  .btn-icon {
+    @apply btn p-2;
+  }
+
+  /* Input variants */
+  .input {
+    @apply w-full px-4 py-2.5 bg-background-primary text-foreground-primary border border-border-primary rounded-lg placeholder:text-foreground-muted transition-all duration-fast ease-out focus:border-brand-primary focus:ring-2 focus:ring-brand-muted focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-error {
+    @apply border-error-secondary focus:border-error-primary focus:ring-error-muted;
+  }
+
+  .label {
+    @apply block text-body-sm font-medium text-foreground-secondary mb-1.5;
+  }
+
+  /* Card variants */
+  .card {
+    @apply bg-background-primary border border-border-primary rounded-xl shadow-soft;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-medium hover:border-border-secondary transition-all duration-normal;
+  }
+
+  /* Badge variants */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-caption font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-brand-muted text-brand-primary;
+  }
+
+  .badge-success {
+    @apply badge bg-success-muted text-success-primary;
+  }
+
+  .badge-warning {
+    @apply badge bg-warning-muted text-warning-primary;
+  }
+
+  .badge-error {
+    @apply badge bg-error-muted text-error-primary;
+  }
+
+  .badge-neutral {
+    @apply badge bg-background-tertiary text-foreground-secondary;
+  }
+
+  /* Microphone button states */
+  .mic-button {
+    @apply relative flex items-center justify-center rounded-full transition-all duration-normal ease-out;
+  }
+
+  .mic-button-idle {
+    @apply mic-button bg-background-tertiary border border-border-primary text-foreground-secondary hover:bg-border-secondary hover:border-border-secondary;
+  }
+
+  .mic-button-listening {
+    @apply mic-button bg-brand-primary text-white shadow-[0_0_0_4px_rgb(15_118_110/0.2)] animate-pulse-soft;
+  }
+
+  .mic-button-processing {
+    @apply mic-button bg-accent-primary text-white animate-pulse-soft;
+  }
+
+  .mic-button-speaking {
+    @apply mic-button bg-success-primary text-white;
+  }
+
+  .mic-button-interrupted {
+    @apply mic-button bg-warning-secondary text-white animate-pulse-soft;
+  }
+
+  .mic-button-error {
+    @apply mic-button bg-error-secondary text-white;
+  }
+
+  /* Waveform bars */
+  .waveform-bar {
+    @apply w-1 bg-brand-primary rounded-full transition-all duration-[100ms] ease-out;
+  }
+
+  /* Transcript message */
+  .transcript-message {
+    @apply flex gap-3 px-4 py-3 max-w-[90%] animate-fade-in;
+  }
+
+  .transcript-user {
+    @apply transcript-message flex-row-reverse self-end;
+  }
+
+  .transcript-assistant {
+    @apply transcript-message self-start;
+  }
+
+  .transcript-bubble {
+    @apply px-4 py-2.5 rounded-2xl text-body;
+  }
+
+  .transcript-user .transcript-bubble {
+    @apply bg-brand-primary text-white rounded-tr-md;
+  }
+
+  .transcript-assistant .transcript-bubble {
+    @apply bg-background-tertiary text-foreground-primary rounded-tl-md border border-border-primary;
+  }
+
+  /* Connection status indicator */
+  .status-indicator {
+    @apply inline-flex items-center gap-1.5 text-body-sm font-medium;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  /* Language selector */
+  .language-option {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl border border-border-primary bg-background-primary hover:bg-background-secondary hover:border-border-secondary transition-all duration-fast cursor-pointer;
+  }
+
+  .language-option-selected {
+    @apply language-option border-brand-primary bg-brand-muted;
+  }
+
+  /* Accessibility toggle */
+  .accessibility-toggle {
+    @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2;
+  }
+
+  .accessibility-toggle-on {
+    @apply accessibility-toggle bg-brand-primary;
+  }
+
+  .accessibility-toggle-off {
+    @apply accessibility-toggle bg-background-tertiary;
+  }
+
+  .accessibility-toggle-thumb {
+    @apply h-4 w-4 transform rounded-full bg-white shadow-soft transition-transform duration-fast ease-out;
+  }
+
+  .accessibility-toggle-on .accessibility-toggle-thumb {
+    @apply translate-x-5;
+  }
+
+  .accessibility-toggle-off .accessibility-toggle-thumb {
+    @apply translate-x-1;
+  }
+}
+
+@layer utilities {
+  /* Text clamp utilities */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Glassmorphism (subtle) */
+  .glass {
+    @apply bg-background-primary/80 backdrop-blur-md border border-border-primary/50;
+  }
+
+  /* Focus ring for custom elements */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background-primary;
+  }
+
+  /* Visually hidden for screen readers */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  /* Container */
+  .container-app {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+}
