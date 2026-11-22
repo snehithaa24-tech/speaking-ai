@@ -89,6 +89,12 @@ class Settings(BaseSettings):
                 clean = item.strip().rstrip("/")
                 if clean:
                     origins.add(clean)
+        import os
+        vercel_url = os.getenv("VERCEL_URL")
+        if vercel_url:
+            clean_v = vercel_url.strip().rstrip("/")
+            origins.add(f"https://{clean_v}")
+            origins.add(f"http://{clean_v}")
         return sorted(list(origins))
 
     # Logging
