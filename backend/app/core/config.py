@@ -59,6 +59,11 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_ID: Optional[str] = Field(default=None, alias="GOOGLE_CLIENT_ID")
     GOOGLE_CLIENT_SECRET: Optional[str] = Field(default=None, alias="GOOGLE_CLIENT_SECRET", repr=False)
 
+    # Supabase Configuration
+    SUPABASE_URL: Optional[str] = Field(default=None, alias="SUPABASE_URL")
+    SUPABASE_PUBLISHABLE_KEY: Optional[str] = Field(default=None, alias="SUPABASE_PUBLISHABLE_KEY")
+    SUPABASE_SECRET_KEY: Optional[str] = Field(default=None, alias="SUPABASE_SECRET_KEY", repr=False)
+
     # Frontend URL & CORS
     FRONTEND_URL: str = Field(default="http://localhost:5173", alias="FRONTEND_URL")
     CORS_ORIGINS: Optional[str] = Field(default=None, alias="CORS_ORIGINS")
