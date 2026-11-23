@@ -13,6 +13,7 @@ def test_config_debug_property():
 
 def test_config_defaults():
     s = Settings(
+        _env_file=None,
         SECRET_KEY="test_secret_key_for_testing_purposes_only",
         GEMINI_API_KEY="test_key_for_development",
     )
